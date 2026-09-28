@@ -1,0 +1,8 @@
+(()=>{"use strict";
+const n=id=>parseFloat(document.getElementById(id)?.value)||0,fmt=(x,d=1)=>Number.isFinite(x)?x.toLocaleString(undefined,{maximumFractionDigits:d}):"—",money=x=>Number.isFinite(x)?x.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}):"—";
+const C={household(){const cost=["mPay","mFuel","mPower","mMaint","mTires","mIns","mPark","mToll","mReg","mTransit","mRide","mBike"].reduce((a,id)=>a+n(id),0),inc=n("mIncome"),miles=n("mMiles");return{monthly:cost,annual:cost*12,burden:inc?cost/inc*100:null,cpm:miles?cost/miles:null}},
+commute(){const days=n("cDays"),weeks=n("cWeeks"),mins=n("cMinutes"),miles=n("cMiles"),cpm=n("cCpm"),park=n("cPark"),toll=n("cToll"),time=n("cTime"),annualDays=days*weeks,hours=mins*annualDays/60,cash=(miles*cpm+park+toll)*annualDays;return{hours,days24:hours/24,cash,timeCost:hours*time,total:cash+hours*time}},
+ev(){const miles=n("eMiles"),eff=n("eEff"),price=n("ePrice"),power=n("ePower"),loss=Math.min(.5,n("eLoss")/100),grid=miles*eff/(1-loss);return{grid,cost:grid*price,hours:grid/(power||1)}},
+fleet(){const v=n("fVehicles"),m=n("fMiles"),e=n("fEff"),w=n("fWindow"),p=n("fPower"),u=n("fUtil")/100,energy=v*m*e,avg=energy/(w||1);return{energy,avg,chargers:Math.ceil(avg/((p*u)||1))}},
+location(){const a=(n("laH")+n("laT"))*12,b=(n("lbH")+n("lbT"))*12,ta=n("laMin")*5*48/60,tb=n("lbMin")*5*48/60;return{a,b,ta,tb}}};
+window.TXMO_CALC={C,n,fmt,money};})();

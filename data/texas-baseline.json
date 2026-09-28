@@ -1,0 +1,181 @@
+{
+  "asOf": "2026-09-28",
+  "note": "Dated evidence snapshot. Values are not automatically assumed current after their source dates.",
+  "facts": [
+    {
+      "label": "2027 UTP total projected investment",
+      "value": "\u2248 $138B",
+      "period": "FY2027\u2013FY2036",
+      "source": "txdot-utp-2027",
+      "grade": "A"
+    },
+    {
+      "label": "2027 UTP project investment",
+      "value": "\u2248 $95B",
+      "period": "FY2027\u2013FY2036",
+      "source": "txdot-utp-2027",
+      "grade": "A"
+    },
+    {
+      "label": "Development + routine maintenance supporting UTP",
+      "value": "\u2248 $43B",
+      "period": "FY2027\u2013FY2036",
+      "source": "txdot-utp-2027",
+      "grade": "A"
+    },
+    {
+      "label": "FY2026 pedestrian investment",
+      "value": "\u2248 $244M / ~185 mi",
+      "period": "FY2026",
+      "source": "txdot-active-2026",
+      "grade": "A"
+    },
+    {
+      "label": "FY2026 bicycle investment",
+      "value": "\u2248 $132M / ~150 mi",
+      "period": "FY2026",
+      "source": "txdot-active-2026",
+      "grade": "A"
+    },
+    {
+      "label": "Texas bridges",
+      "value": "56,951 total / 680 poor",
+      "period": "2025 NBI",
+      "source": "fhwa-nbi-2025",
+      "grade": "A"
+    },
+    {
+      "label": "Public EV charging",
+      "value": "3,774 locations / 12,654 ports",
+      "period": "2026-09-16",
+      "source": "afdc-tx-2026",
+      "grade": "A"
+    },
+    {
+      "label": "Registered light-duty EVs",
+      "value": "387,400",
+      "period": "2025",
+      "source": "afdc-tx-profile",
+      "grade": "A"
+    },
+    {
+      "label": "Work-zone safety",
+      "value": ">28,000 crashes / 203 deaths",
+      "period": "2025",
+      "source": "txdot-workzones-2025",
+      "grade": "A"
+    },
+    {
+      "label": "Rail grade separation",
+      "value": "$756M federal / >$953M combined",
+      "period": "announced 2026-08-14",
+      "source": "txdot-rail-grade-2026",
+      "grade": "A"
+    },
+    {
+      "label": "NTD monthly ridership freshness",
+      "value": "through July 2026",
+      "period": "release 2026-09-01",
+      "source": "fta-ntd-monthly",
+      "grade": "A"
+    }
+  ],
+  "crossDomain": [
+    {
+      "domain": "Housing",
+      "links": [
+        "location cost",
+        "commute length",
+        "displacement risk",
+        "transit-oriented access"
+      ]
+    },
+    {
+      "domain": "Health",
+      "links": [
+        "appointment access",
+        "NEMT",
+        "heat exposure",
+        "injury prevention",
+        "air quality"
+      ]
+    },
+    {
+      "domain": "Education",
+      "links": [
+        "school buses",
+        "Safe Routes to School",
+        "after-school access",
+        "student privacy"
+      ]
+    },
+    {
+      "domain": "Food",
+      "links": [
+        "grocery access",
+        "cold-chain reliability",
+        "freight redundancy",
+        "last-mile delivery"
+      ]
+    },
+    {
+      "domain": "Energy",
+      "links": [
+        "fuel resilience",
+        "EV charging",
+        "fleet depots",
+        "grid peaks",
+        "backup power"
+      ]
+    },
+    {
+      "domain": "Water",
+      "links": [
+        "flooded crossings",
+        "drainage",
+        "port/waterway freight",
+        "emergency access"
+      ]
+    },
+    {
+      "domain": "Resilience",
+      "links": [
+        "evacuation",
+        "route redundancy",
+        "communications",
+        "shelter access",
+        "fuel continuity"
+      ]
+    },
+    {
+      "domain": "Accessibility",
+      "links": [
+        "paratransit",
+        "curb ramps",
+        "crossing time",
+        "low-floor transit",
+        "caregiver coordination"
+      ]
+    },
+    {
+      "domain": "Economy",
+      "links": [
+        "job access",
+        "freight reliability",
+        "travel-time cost",
+        "workforce mobility",
+        "ports"
+      ]
+    },
+    {
+      "domain": "Environment",
+      "links": [
+        "heat",
+        "emissions",
+        "stormwater",
+        "habitat fragmentation",
+        "active transportation"
+      ]
+    }
+  ]
+}

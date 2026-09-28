@@ -1,0 +1,9 @@
+(()=>{"use strict";
+const DB="txmo-suite",VER=1,STORES=["local","outbox"];let db=null,initP;
+function init(){return new Promise(resolve=>{if(!("indexedDB" in window)){resolve(null);return}const r=indexedDB.open(DB,VER);r.onupgradeneeded=()=>{for(const s of STORES)if(!r.result.objectStoreNames.contains(s))r.result.createObjectStore(s,{keyPath:"id"})};r.onsuccess=()=>{db=r.result;resolve(db)};r.onerror=()=>resolve(null)})}
+function ready(){return initP||(initP=init())}
+async function all(store){await ready();if(!db)return JSON.parse(localStorage.getItem("txmo."+store)||"[]");return new Promise((res,rej)=>{const t=db.transaction(store);const r=t.objectStore(store).getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+async function put(store,obj){await ready();obj.id=obj.id||crypto.randomUUID();obj.updatedAt=new Date().toISOString();if(!db){const a=await all(store),i=a.findIndex(x=>x.id===obj.id);i>=0?a[i]=obj:a.push(obj);localStorage.setItem("txmo."+store,JSON.stringify(a));return obj}return new Promise((res,rej)=>{const t=db.transaction(store,"readwrite");t.objectStore(store).put(obj);t.oncomplete=()=>res(obj);t.onerror=()=>rej(t.error)})}
+async function remove(store,id){await ready();if(!db){const a=(await all(store)).filter(x=>x.id!==id);localStorage.setItem("txmo."+store,JSON.stringify(a));return}return new Promise((res,rej)=>{const t=db.transaction(store,"readwrite");t.objectStore(store).delete(id);t.oncomplete=res;t.onerror=()=>rej(t.error)})}
+async function clear(){await ready();for(const s of STORES){if(!db)localStorage.removeItem("txmo."+s);else await new Promise((res,rej)=>{const t=db.transaction(s,"readwrite");t.objectStore(s).clear();t.oncomplete=res;t.onerror=()=>rej(t.error)})}}
+window.TXMO_DB={init:ready,all,put,remove,clear};})();

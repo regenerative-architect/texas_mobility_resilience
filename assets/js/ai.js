@@ -1,0 +1,7 @@
+(()=>{"use strict";
+const state={engine:null,model:"Llama-3.2-1B-Instruct-q4f16_1-MLC",status:"idle"};
+async function supported(){if(!("gpu" in navigator))return false;try{return !!(await navigator.gpu.requestAdapter())}catch{return false}}
+async function load(model,onProgress=()=>{}){if(!(await supported()))throw new Error("WebGPU is unavailable in this browser/device.");state.status="loading";state.model=model||state.model;const webllm=await import("https://esm.run/@mlc-ai/web-llm");state.engine=await webllm.CreateMLCEngine(state.model,{initProgressCallback:r=>onProgress(r.text||`${Math.round((r.progress||0)*100)}%`)});state.status="ready";return true}
+async function ask(messages,opt={}){if(!state.engine)throw new Error("Load a WebLLM model first.");const r=await state.engine.chat.completions.create({messages,temperature:opt.temperature??0.2,max_tokens:opt.max_tokens??700});return r.choices?.[0]?.message?.content||""}
+function systemContext(extra=""){const facts=(window.TXMO_DATA?.baseline?.facts||[]).map(x=>`${x.label}: ${x.value} (${x.period}; source ${x.source})`).join("\n");return `You are a local browser-based assistant for the Texas Mobility & Transportation Resilience OS. Distinguish measured facts, institutional analysis, modeled scenarios and conceptual proposals. Never invent live conditions, routes, funding openings or statistics. Prioritize safety, accessibility, affordability, resilience and transparent assumptions.\nDated evidence snapshot:\n${facts}\n${extra}`}
+window.TXMO_AI={state,supported,load,ask,systemContext};})();

@@ -1,0 +1,17 @@
+{
+  "name": "texas-mobility-resilience-os",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Texas Mobility & Transportation Resilience OS with PWA, WebLLM-ready local AI and WebSocket multiplayer.",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node tests/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
